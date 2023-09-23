@@ -88,7 +88,7 @@ define('WP_AUTO_UPDATE_CORE', false);
  * @link https://wordpress.org/support/article/debugging-in-wordpress/
  */
 if ( ! defined( 'WP_DEBUG' ) ) {
-	define( 'WP_DEBUG', false );
+	define( 'WP_DEBUG', true );
 }
 
 /* That's all, stop editing! Happy publishing. */
