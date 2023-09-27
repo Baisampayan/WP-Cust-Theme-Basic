@@ -10,14 +10,11 @@
                     </a>
                     &nbsp| By <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php echo get_the_author( ); ?></a>
                 </div>
-                <?php if ( is_category() || is_archive() ) { ?>
-                    <div>
-                        <?php the_excerpt(  ); ?>
-                    </div>
-                    <a href="<?php echo get_the_permalink( ); ?>" title="<?php the_title_attribute( ); ?>">Read More</a>
-                } else {
-                    the_content();
-                } ?>
+                <div>
+                    <?php the_excerpt(  ); ?>
+                </div>
+                <a href="<?php echo get_the_permalink( ); ?>" title="<?php the_title_attribute( ); ?>">Read More</a>
+                <?php /* the_content( ); */?>
             <?php }
         } the_posts_pagination( );
     } else { ?>
