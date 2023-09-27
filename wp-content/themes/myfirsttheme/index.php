@@ -16,7 +16,7 @@
                 <a href="<?php echo get_the_permalink( ); ?>" title="<?php the_title_attribute( ); ?>">Read More</a>
                 <?php /* the_content( ); */?>
             <?php }
-        }
+        } <?php the_posts_pagination( ); ?>
     } else { ?>
         <p>There is no post available according to your criteria.</p>
     <?php } ?>
