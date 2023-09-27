@@ -6,11 +6,15 @@
                 <div>
                     Posted on
                     <a href="<?php echo get_the_permalink( ); ?>">
-                        <time datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date(); ?></time>
+                        <time datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date();?></time>
                     </a>
-                     | By <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php echo get_the_author( ); ?></a>
+                    &nbsp| By <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php echo get_the_author( ); ?></a>
                 </div>
-                <?php the_content( ); ?>
+                <div>
+                    <?php the_excerpt(  ); ?>
+                </div>
+                <a href="<?php echo get_the_permalink( ); ?>" title="<?php the_title_attribute( ); ?>">Read More</a>
+                <?php /* the_content( ); */?>
             <?php }
         }
     } else { ?>
