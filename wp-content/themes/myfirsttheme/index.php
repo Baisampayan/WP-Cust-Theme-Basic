@@ -4,16 +4,14 @@
             the_post( ); { ?>
                 <a href="<?php the_permalink( ) ?>" title="<?php the_title_attribute( ); ?>"><h2><?php the_title( ); ?></h2></a>
                 <div>
-                    Posted on
-                    <a href="<?php echo get_the_permalink( ); ?>">
-                        <time datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date();?></time>
-                    </a>
-                    &nbsp| By <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php echo get_the_author( ); ?></a>
+                    <!-- Getting the Post Meta Template from function -> lib -> helpers.php -->
+                    <?php myfirsttheme_post_meta_template(); ?>
                 </div>
                 <div>
                     <?php the_excerpt(  ); ?>
                 </div>
-                <a href="<?php echo get_the_permalink( ); ?>" title="<?php the_title_attribute( ); ?>">Read More<span class="u-screen-reader-text">About <?php the_title( ); ?></span></a>
+                    <!-- Getting the Read More Template from function -> lib -> helpers.php -->
+                    <?php myfirsttheme_readmore_template(); ?>
                 <?php /* the_content( ); */?>
             <?php }
         } the_posts_pagination( );
