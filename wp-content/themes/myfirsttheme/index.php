@@ -16,6 +16,12 @@
             <?php }
         } the_posts_pagination( );
     } else { ?>
-        <p>There is no post available according to your criteria.</p>
+        <p><?php esc_html_e( 'There is no post available according to your criteria.', 'myfirsttheme' ); ?></p>
     <?php } ?>
+
+    <!-- Testing -->
+    <?php
+        // $comments = 1;
+        // printf(_n('One Comment', '%s Comments', $comments, 'firsttheme'), $comments);
+    ?>
 <?php get_footer( ); ?>
