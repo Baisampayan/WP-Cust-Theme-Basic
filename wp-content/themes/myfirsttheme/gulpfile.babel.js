@@ -8,15 +8,22 @@ import sourcemaps from 'gulp-sourcemaps';
 
 const PRODUCTION = yargs.argv.prod;
 
+const FolderPaths = {
+    styles: {
+        src: ['src/assets/scss/bundle.scss', 'src/assets/scss/admin.scss'],
+        dest: 'dist/assets/css'
+    }
+}
+
 export const styles = () => {
-    return gulp.src(['src/assets/scss/bundle.scss', 'src/assets/scss/admin.scss'])
+    return gulp.src(FolderPaths.styles.src)
         .pipe(gulpif(!PRODUCTION, sourcemaps.init()))
         .pipe(sass().on('ScssError', sass.logError))
         //.pipe(clean())
         // Only minify in  production (gulp styles -- prod)
         .pipe(gulpif(PRODUCTION, cssnano()))
         .pipe(gulpif(!PRODUCTION, sourcemaps.write()))
-        .pipe(gulp.dest('dist/assets/css'));
+        .pipe(gulp.dest(FolderPaths.styles.dest));
 }
 
 // export default hello;
