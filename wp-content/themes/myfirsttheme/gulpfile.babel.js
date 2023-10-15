@@ -1,6 +1,8 @@
-function defaultTask(cb) {
-    // place code for your default task here
+import { Gulp } from "gulp";
+
+export const hello = (cb) => {
+    console.log('hi');
     cb();
 }
 
-exports.default = defaultTask
+export default hello;
