@@ -1,7 +1,6 @@
 {
   "name": "myfirsttheme",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "directories": {
     "lib": "lib"
@@ -12,6 +11,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "gulp": "^3.9.1"
-  }
+    "gulp": "^4.0.2"
+  },
+  "dependencies": {
+    "global": "^4.4.0",
+    "gulp-cli": "^2.3.0"
+  },
+  "description": ""
 }
