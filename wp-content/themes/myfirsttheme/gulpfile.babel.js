@@ -11,6 +11,7 @@ export const styles = () => {
     return gulp.src('src/assets/scss/bundle.scss')
         .pipe(sass().on('ScssError', sass.logError))
         //.pipe(clean())
+        // Only minify in  production (gulp styles -- prod)
         .pipe(gulpif(PRODUCTION, cssnano()))
         .pipe(gulp.dest('dist/assets/css'));
 }
