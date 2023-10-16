@@ -5,6 +5,7 @@ import cssnano from "gulp-cssnano";
 import gulpif from "gulp-if";
 import sourcemaps from 'gulp-sourcemaps';
 import imagemin from 'gulp-imagemin';
+import del from "del";
 
 const PRODUCTION = yargs.argv.prod;
 
@@ -45,6 +46,11 @@ export const themeimagesmin = () => {
 export const themecopy = () => {
     return gulp.src(FolderPaths.others.src)
         .pipe(gulp.dest(FolderPaths.others.dest));
+}
+
+// Cleaning content from Dist Folder
+export const themeclean = () => {
+    return del(['dist']);
 }
 
 // Watch Task
