@@ -1,4 +1,4 @@
-import gulp from "gulp";
+import gulp, { watch } from "gulp";
 import yargs from "yargs";
 const sass = require('gulp-sass')(require('sass'));
 import cssnano from "gulp-cssnano";
@@ -55,7 +55,13 @@ export const themeclean = () => {
 
 // Watch Task
 export const themewatch = () => {
-    gulp.watch('src/assets/scss/**/*.scss', styles);
+    gulp.watch('src/assets/scss/**/*.scss', themestyles);
+    gulp.watch(FolderPaths.images.src, themeimagesmin);
+    gulp.watch(FolderPaths.others.src, themecopy);
 }
 
-// export default hello;
+// Creating Built Task
+export const devbuilt = gulp.series(themeclean, gulp.parallel(themestyles, themeimagesmin, themecopy), themewatch);
+export const themebuilt = gulp.series(themeclean, gulp.parallel(themestyles, themeimagesmin, themecopy));
+
+export default devbuilt;
