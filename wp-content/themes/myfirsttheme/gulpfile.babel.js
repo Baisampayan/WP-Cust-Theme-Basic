@@ -8,6 +8,7 @@ import imagemin from 'gulp-imagemin';
 
 const PRODUCTION = yargs.argv.prod;
 
+// Folder Paths
 const FolderPaths = {
     styles: {
         src: ['src/assets/scss/bundle.scss', 'src/assets/scss/admin.scss'],
@@ -16,10 +17,14 @@ const FolderPaths = {
     images: {
         src: 'src/assets/images/**/*.{jpg,png,gif,webp,tiff,jpeg,svg}',
         dest: 'dist/assets/images'
+    }, 
+    others: {
+        src: ['src/assets/**/*', '!src/assets/{images,js,scss}', '!src/assets/{images,js,scss}/**/*'],
+        dest: 'dist/assets/'
     }
 }
 // Style Optimization
-export const styles = () => {
+export const themestyles = () => {
     return gulp.src(FolderPaths.styles.src)
         .pipe(gulpif(!PRODUCTION, sourcemaps.init()))
         .pipe(sass().on('ScssError', sass.logError))
@@ -36,8 +41,14 @@ export const themeimagesmin = () => {
         .pipe(gulp.dest(FolderPaths.images.dest));
 }
 
+// Coping all files except Images, JavaScript, and SCSS
+export const themecopy = () => {
+    return gulp.src(FolderPaths.others.src)
+        .pipe(gulp.dest(FolderPaths.others.dest));
+}
+
 // Watch Task
-export const watch = () => {
+export const themewatch = () => {
     gulp.watch('src/assets/scss/**/*.scss', styles);
 }
 
