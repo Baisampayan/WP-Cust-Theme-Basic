@@ -6,6 +6,7 @@ import gulpif from "gulp-if";
 import sourcemaps from 'gulp-sourcemaps';
 import imagemin from 'gulp-imagemin';
 import del from "del";
+import webpack from "webpack-stream"
 
 const PRODUCTION = yargs.argv.prod;
 
@@ -15,6 +16,10 @@ const FolderPaths = {
         src: ['src/assets/scss/bundle.scss', 'src/assets/scss/admin.scss'],
         dest: 'dist/assets/css'
     }, 
+    scripts: {
+        src: 'src/assets/js/bundle.js',
+        dest: 'dist/assets/js'
+    },
     images: {
         src: 'src/assets/images/**/*.{jpg,png,gif,webp,tiff,jpeg,svg}',
         dest: 'dist/assets/images'
@@ -46,6 +51,13 @@ export const themeimagesmin = () => {
 export const themecopy = () => {
     return gulp.src(FolderPaths.others.src)
         .pipe(gulp.dest(FolderPaths.others.dest));
+}
+
+// For Javascript Minification & Bundling
+export const themescripts = () => {
+    return gulp.src(FolderPaths.scripts.src)
+        .pipe(webpack())
+        .pipe(gulp.dest(FolderPaths.scripts.dest));
 }
 
 // Cleaning content from Dist Folder
