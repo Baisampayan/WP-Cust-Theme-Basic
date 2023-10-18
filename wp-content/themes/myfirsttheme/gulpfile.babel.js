@@ -70,6 +70,9 @@ export const themescripts = () => {
                         }
                     }
                 ]
+            },
+            output: {
+                filename: 'bundle.js'
             }
         }))
         .pipe(gulp.dest(FolderPaths.scripts.dest));
@@ -88,7 +91,7 @@ export const themewatch = () => {
 }
 
 // Creating Built Task
-export const devbuilt = gulp.series(themeclean, gulp.parallel(themestyles, themeimagesmin, themecopy), themewatch);
-export const themebuilt = gulp.series(themeclean, gulp.parallel(themestyles, themeimagesmin, themecopy));
+export const devbuilt = gulp.series(themeclean, gulp.parallel(themestyles, themeimagesmin, themecopy, themescripts), themewatch);
+export const themebuilt = gulp.series(themeclean, gulp.parallel(themestyles, themeimagesmin, themecopy, themescripts));
 
 export default devbuilt;
