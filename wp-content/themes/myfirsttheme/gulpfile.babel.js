@@ -73,7 +73,8 @@ export const themescripts = () => {
             },
             output: {
                 filename: 'bundle.js'
-            }
+            },
+            devtool: 'inline-source-map'
         }))
         .pipe(gulp.dest(FolderPaths.scripts.dest));
 }
