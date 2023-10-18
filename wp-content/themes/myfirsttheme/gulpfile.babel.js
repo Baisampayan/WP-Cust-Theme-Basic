@@ -56,7 +56,22 @@ export const themecopy = () => {
 // For Javascript Minification & Bundling
 export const themescripts = () => {
     return gulp.src(FolderPaths.scripts.src)
-        .pipe(webpack())
+        .pipe(webpack({
+            module: {
+                rules: [ //  <--changed from loaders to rules that's it :)
+                    {
+                        test: /\.js$/,
+                        use: {
+                            loader: 'babel-loader',
+                            options: {
+                                presets: ['@babel/preset-env'], //Follow 'Webpack Update Note' to make sure this matches
+                                
+                            }
+                        }
+                    }
+                ]
+            }
+        }))
         .pipe(gulp.dest(FolderPaths.scripts.dest));
 }
 
