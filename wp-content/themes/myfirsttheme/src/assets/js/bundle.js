@@ -1,5 +1,5 @@
-import './components/slider';
+import './components/slider.js';
 
-let x = 5;
+let x = 15;
 console.log(x);
 console.log(x+5);
