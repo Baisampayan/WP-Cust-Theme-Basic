@@ -6,7 +6,8 @@ import gulpif from "gulp-if";
 import sourcemaps from 'gulp-sourcemaps';
 import imagemin from 'gulp-imagemin';
 import del from "del";
-import webpack from "webpack-stream"
+import webpack from "webpack-stream";
+import uglify from "gulp-uglify";
 
 const PRODUCTION = yargs.argv.prod;
 
@@ -74,8 +75,10 @@ export const themescripts = () => {
             output: {
                 filename: 'bundle.js'
             },
-            devtool: 'inline-source-map'
+            devtool: !PRODUCTION ? 'inline-source-map' : false,
+            mode: PRODUCTION ? 'production' : 'development'
         }))
+        .pipe(gulpif(PRODUCTION, uglify()))
         .pipe(gulp.dest(FolderPaths.scripts.dest));
 }
 
