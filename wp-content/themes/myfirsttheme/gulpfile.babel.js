@@ -92,12 +92,13 @@ export const themeclean = () => {
 // Watch Task
 export const themewatch = () => {
     gulp.watch('src/assets/scss/**/*.scss', themestyles);
+    gulp.watch('src/assets/js/**/*.js', themescripts);
     gulp.watch(FolderPaths.images.src, themeimagesmin);
     gulp.watch(FolderPaths.others.src, themecopy);
 }
 
 // Creating Built Task
-export const devbuilt = gulp.series(themeclean, gulp.parallel(themestyles, themeimagesmin, themecopy, themescripts), themewatch);
-export const themebuilt = gulp.series(themeclean, gulp.parallel(themestyles, themeimagesmin, themecopy, themescripts));
+export const devbuilt = gulp.series(themeclean, gulp.parallel(themestyles, themeimagesmin, themescripts, themecopy), themewatch);
+export const themebuilt = gulp.series(themeclean, gulp.parallel(themestyles, themeimagesmin, themescripts, themecopy));
 
 export default devbuilt;
