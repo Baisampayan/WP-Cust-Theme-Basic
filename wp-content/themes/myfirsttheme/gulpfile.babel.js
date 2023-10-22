@@ -8,6 +8,7 @@ import imagemin from 'gulp-imagemin';
 import del from "del";
 import webpack from "webpack-stream";
 import uglify from "gulp-uglify";
+import named from "vinyl-named"
 
 const PRODUCTION = yargs.argv.prod;
 
@@ -18,7 +19,7 @@ const FolderPaths = {
         dest: 'dist/assets/css'
     }, 
     scripts: {
-        src: 'src/assets/js/bundle.js',
+        src: ['src/assets/js/bundle.js', 'src/assets/js/admin.js'],
         dest: 'dist/assets/js'
     },
     images: {
@@ -57,6 +58,7 @@ export const themecopy = () => {
 // For Javascript Minification & Bundling
 export const themescripts = () => {
     return gulp.src(FolderPaths.scripts.src)
+        .pipe(named())
         .pipe(webpack({
             module: {
                 rules: [ //  <--changed from loaders to rules that's it :)
@@ -73,7 +75,7 @@ export const themescripts = () => {
                 ]
             },
             output: {
-                filename: 'bundle.js'
+                filename: '[name].js',
             },
             devtool: !PRODUCTION ? 'inline-source-map' : false,
             mode: PRODUCTION ? 'production' : 'development'
