@@ -1,3 +1,4 @@
+import 'jquery';
 import './components/slider.js';
 
 let x = 15;
