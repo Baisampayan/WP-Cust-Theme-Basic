@@ -77,6 +77,9 @@ export const themescripts = () => {
             output: {
                 filename: '[name].js',
             },
+            externals: {
+                jquery: 'jQuery'
+            },
             devtool: !PRODUCTION ? 'inline-source-map' : false,
             mode: PRODUCTION ? 'production' : 'development'
         }))
