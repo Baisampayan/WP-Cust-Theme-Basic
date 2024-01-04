@@ -8,7 +8,8 @@ import imagemin from 'gulp-imagemin';
 import del from "del";
 import webpack from "webpack-stream";
 import uglify from "gulp-uglify";
-import named from "vinyl-named"
+import named from "vinyl-named";
+import zip from "gulp-zip";
 
 const PRODUCTION = yargs.argv.prod;
 
@@ -29,6 +30,10 @@ const FolderPaths = {
     others: {
         src: ['src/assets/**/*', '!src/assets/{images,js,scss}', '!src/assets/{images,js,scss}/**/*'],
         dest: 'dist/assets/'
+    },
+    package: {
+        src: ['**/*', '!.vscode', '!node_modules{,/**}', '!packaged{,/**}', '!src{,/**}', '!.babelrc', '!gulpfile.babel.js', '!package-lock.json', '!package.json'],
+        dest: 'packaged'
     }
 }
 // Style Optimization
@@ -100,8 +105,16 @@ export const themewatch = () => {
     gulp.watch(FolderPaths.others.src, themecopy);
 }
 
+//Creating theme package file
+export const themecompress = () => {
+    return gulp.src(FolderPaths.package.src)
+        .pipe(zip('myfirsttheme.zip'))
+        .pipe(gulp.dest(FolderPaths.package.dest));
+}
+
 // Creating Built Task
 export const devbuilt = gulp.series(themeclean, gulp.parallel(themestyles, themeimagesmin, themescripts, themecopy), themewatch);
 export const themebuilt = gulp.series(themeclean, gulp.parallel(themestyles, themeimagesmin, themescripts, themecopy));
+export const themebundle = gulp.series(themebuilt, themecompress);
 
 export default devbuilt;
