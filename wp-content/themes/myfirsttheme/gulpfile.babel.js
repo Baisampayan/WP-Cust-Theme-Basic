@@ -10,6 +10,8 @@ import webpack from "webpack-stream";
 import uglify from "gulp-uglify";
 import named from "vinyl-named";
 import zip from "gulp-zip";
+import replace from "gulp-replace";
+import info from "./package.json";
 
 const PRODUCTION = yargs.argv.prod;
 
@@ -108,7 +110,8 @@ export const themewatch = () => {
 //Creating theme package file
 export const themecompress = () => {
     return gulp.src(FolderPaths.package.src)
-        .pipe(zip('myfirsttheme.zip'))
+        .pipe(replace('_themename', info.name))
+        .pipe(zip(`${info.name}.zip`))
         .pipe(gulp.dest(FolderPaths.package.dest));
 }
 
