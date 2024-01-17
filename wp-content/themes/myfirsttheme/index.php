@@ -15,7 +15,7 @@
                 <?php /* the_content( ); */?>
             <?php }
         } the_posts_pagination( );
-        // Creating Custom Action Hooks
+        /* Creating Custom Action Hooks */
         do_action( '_themename_after_pagination' );
     } else { ?>
         <p><?php esc_html_e( 'There is no post available according to your criteria.', '_themename' ); ?></p>
